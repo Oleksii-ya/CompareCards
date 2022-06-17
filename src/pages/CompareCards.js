@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 
 import CardBeforeGame from './components/CardBeforeGame'
 import CardInGame from './components/CardInGame'
+import incomingCards from '../incomingData/incomingData'
+const flagStopCardFlip = [true];
 
 function CompareCards() {
-  const flagStopCardFlip = [true];
-
-
-  // array names for cards that come from outside
-  const incomingCards = ['apple', 'wood', 'sun', 'candy', "winter"]
+ 
   // each type of card must be 2 pieces
   const [quantityCardsNotInGame, setQuantityCardsNotInGame] =
     useState(incomingCards.map(() => 2))
