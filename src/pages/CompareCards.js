@@ -6,7 +6,7 @@ import incomingCards from '../incomingData/incomingData'
 const flagStopCardFlip = [true];
 
 function CompareCards() {
- 
+
   // each type of card must be 2 pieces
   const [quantityCardsNotInGame, setQuantityCardsNotInGame] =
     useState(incomingCards.map(() => 2))
@@ -26,15 +26,16 @@ function CompareCards() {
 
   return (
     <>
-      {incomingCards.map((item, index) =>
-        <CardBeforeGame
-          key={item}
-          cardName={item}
-          order={index}
-          quantityCardsNotInGame={quantityCardsNotInGame[index]}
-          add={addCardsToPlay}
-        />)}
-
+      <div className='incoming-cards-wrapper'>
+        {incomingCards.map((item, index) =>
+          <CardBeforeGame
+            key={item}
+            cardName={item}
+            order={index}
+            quantityCardsNotInGame={quantityCardsNotInGame[index]}
+            add={addCardsToPlay}
+          />)}
+      </div>
       <div className='play-cards-wrapper'>
         {cardsInGame.map((item, index) =>
           <CardInGame

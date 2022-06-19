@@ -54,7 +54,7 @@ function CardInGame({ cardName, cardsOpened, setCardsOpened, setCardsInGame, fla
 
   return (
     <div
-      className='play-card'
+      className={frontSide ? 'front-side play-card' : 'play-card'}
       onClick={handlerCardClick}
     >
       {frontSide ? name : ''}
