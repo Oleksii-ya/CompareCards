@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CardBeforeGame from './components/CardBeforeGame'
 import CardInGame from './components/CardInGame'
 import incomingCards from '../incomingData/incomingData'
-const flagStopCardFlip = [true];
+const flagStopCardFlip = [true]
 
 function CompareCards() {
 
@@ -14,6 +14,7 @@ function CompareCards() {
   const [cardsInGame, setCardsInGame] = useState([])
   // cards that opened
   const [cardsOpened, setCardsOpened] = useState([])
+  const [startGame, setStartGame] = useState(false)
 
   const addCardsToPlay = (order) => {
     setQuantityCardsNotInGame((state) => {
@@ -23,6 +24,22 @@ function CompareCards() {
     })
     setCardsInGame((state) => [...state, incomingCards[order]])
   }
+
+  const restartGame = () => {
+    setQuantityCardsNotInGame(incomingCards.map(() => 2))
+    setCardsInGame([])
+    setCardsOpened([])
+    setStartGame(false)
+  }
+
+  useEffect(() => {
+    const totalCardsNotInGame = quantityCardsNotInGame.reduce((prevReturn, item) => {
+      return prevReturn + item
+    })
+    if (totalCardsNotInGame === 0) {
+      setStartGame(true)
+    }
+  }, [quantityCardsNotInGame])
 
   return (
     <>
@@ -35,7 +52,12 @@ function CompareCards() {
             quantityCardsNotInGame={quantityCardsNotInGame[index]}
             add={addCardsToPlay}
           />)}
+        <button
+          className='repeat-game'
+          onClick={restartGame}
+        >Restart Game</button>
       </div>
+
       <div className='play-cards-wrapper'>
         {cardsInGame.map((item, index) =>
           <CardInGame
@@ -44,8 +66,8 @@ function CompareCards() {
             cardsOpened={cardsOpened}
             setCardsOpened={setCardsOpened}
             setCardsInGame={setCardsInGame}
-
             flagStopCardFlip={flagStopCardFlip}
+            startGame={startGame}
           />
         )}
       </div>
