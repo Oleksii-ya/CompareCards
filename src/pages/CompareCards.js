@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import CardBeforeGame from './components/CardBeforeGame'
 import CardInGame from './components/CardInGame'
 import incomingCards from '../incomingData/incomingData'
+import { AnimationProvider } from '../AnimationContext'
+
 const flagStopCardFlip = [true]
 
 function CompareCards() {
@@ -59,17 +61,19 @@ function CompareCards() {
       </div>
 
       <div className='play-cards-wrapper'>
-        {cardsInGame.map((item, index) =>
-          <CardInGame
-            key={item + index}
-            cardName={item}
-            cardsOpened={cardsOpened}
-            setCardsOpened={setCardsOpened}
-            setCardsInGame={setCardsInGame}
-            flagStopCardFlip={flagStopCardFlip}
-            startGame={startGame}
-          />
-        )}
+        <AnimationProvider>
+          {cardsInGame.map((item, index) =>
+            <CardInGame
+              key={item + index}
+              cardName={item}
+              cardsOpened={cardsOpened}
+              setCardsOpened={setCardsOpened}
+              setCardsInGame={setCardsInGame}
+              flagStopCardFlip={flagStopCardFlip}
+              startGame={startGame}
+            />
+          )}
+        </AnimationProvider>
       </div>
     </>
   )

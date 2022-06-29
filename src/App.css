@@ -1,5 +1,6 @@
 .App {
   max-width: 1600px;
+  padding: 16px;
   margin: 0 auto;
 }
 
@@ -23,13 +24,10 @@
   padding: 20px;
   background-color: rgb(254, 217, 194);
   border: 2px dotted rgb(0, 0, 0);
-  margin-right: 20px;
+  margin: 16px;
   min-width: 80px;
   text-align: center;
   font-weight: 600;
-}
-.compare-items:last-child {
-  margin-right: 0px;
 }
 .compare-items:hover {
   background-color: rgb(248, 194, 160);
@@ -47,9 +45,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
 }
 .repeat-game {
+  margin: 16px;
   padding: 20px;
   font-weight: 600;
   text-transform: uppercase;
@@ -60,7 +60,7 @@
   background-color: rgb(118, 228, 133);
 }
 
-/* .hide-animation{
+.hide-animation {
   animation: appearance 1.5s forwards;
 }
 
@@ -71,4 +71,22 @@
   0% {
     opacity: 1;
   }
-} */
+}
+
+@media (max-width: 1200px) {
+  .play-card {
+    width: 150px;
+    height: 200px;
+    border-radius: 16px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .play-card {
+    width: 100px;
+    height: 150px;
+    border-radius: 14px;
+    font-size: 22px;
+  }
+}
