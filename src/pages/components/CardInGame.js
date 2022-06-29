@@ -17,16 +17,17 @@ function CardInGame({
 
   useEffect(() => {
     if (flagCloseCard.current) {
+      flagCloseCard.current = false;
       setTimeout(() => {
         setFrontSide((frontSide) => !frontSide);
         flagStopCardFlip[0] = true;
-        flagCloseCard.current = false;
       }, 1500);
     }
   }, [flagCloseCard.current])
 
   useEffect(() => {
     if (flagEqualCards.current) {
+      flagEqualCards.current = false;
       setTimeout(() => {
         setCardsInGame((state) => {
           return state.filter((item) => {
@@ -34,8 +35,8 @@ function CardInGame({
           });
         });
         setCardsOpened([]);
+        setNameForCompare('')
         flagStopCardFlip[0] = true;
-        flagEqualCards.current = false;
       }, 1500);
     }
   }, [flagEqualCards.current])
